@@ -47,6 +47,7 @@
         <v-icon size="large" @click="console.log(item.id)">mdi-delete</v-icon>
       </template>
     </v-data-table>
+    <CreateTaskDialog :dialog="dialogCreateTask" :close="() => (dialogCreateTask = false)" />
 </template>
   
 <script setup>
