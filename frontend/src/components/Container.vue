@@ -1,10 +1,10 @@
 <template>
     <div class="banner-container">
         <h1 class="title">
-            ¡Bienvenido a MEDNAT-SSR!
+            ¡Welcome to MEDNAT-SSR!
         </h1>
         <h2 class="title2">
-            Plataforma N° 1 en gestion de tareas
+            N° 1 Task Management Platform
         </h2>
     </div>
 </template>
