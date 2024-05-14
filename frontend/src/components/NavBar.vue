@@ -1,7 +1,7 @@
 <template>
     <v-toolbar color="#101510">
         <RouterLink to="/" class="navLink" style="display: flex; align-items: center;">
-            <span class="material-icons diamond">diamond</span>
+            <img class="diamond" src="../assets/diamond.svg"></img>
             <v-toolbar-title class="toolbar-title">
                 Mednat-SSR
             </v-toolbar-title>
@@ -49,8 +49,8 @@ import { RouterLink } from 'vue-router';
 }
 
 .diamond {
-    font-size: 45px;
-    color: #43d1f4;
+    width: 45px;
+    fill: #43d1f4;
 }
 
 .toolbar-title {

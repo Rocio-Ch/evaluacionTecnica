@@ -16,13 +16,14 @@
         ></v-text-field>
         <v-btn
             elevated
-            class="mb-2"
+            class="newTask mb-2"
             color="#fff"
             dark
-            style="background-color: #2196f3"
+            style="background-color: #14a3c6"
             height="50px"
             @click="openCreateTaskDialog"
         >
+                <!--#2196f3-->
             New Task
         </v-btn>
     </v-toolbar>
@@ -105,8 +106,14 @@ const allTasks = [
 
 thead {
     background-color: #e94408;
-    /* background-color: #18a35e; */
+    /*     background-color: #18a35e;
+        background-color: #14a3c6; */
     color: white;
+}
+
+.newTask:hover {
+    box-shadow: 1px 1px 6px 0px #272727bf;
+    background: linear-gradient(to right, #14a3c6, #168ed9);
 }
 
 .v-toolbar__content > .v-btn:last-child  {
