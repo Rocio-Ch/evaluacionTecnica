@@ -1,6 +1,19 @@
 {
   "name": "evaluacion-tecnica",
   "version": "0.0.0",
+  "description": "proyecto frontend para prueba de conocimientos tecnicos con vue 3 composition api y vuetify",
+  "main": "index.js",
+  
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rocio-Ch/evaluacionTecnica.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Rocio-Ch/evaluacionTecnica/issues"
+  },
+  "author": "Rocio Magali Chaparro",
+  "homepage": "https://github.com/Rocio-Ch/evaluacionTecnica#readme",
+  "license": "ISC",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
