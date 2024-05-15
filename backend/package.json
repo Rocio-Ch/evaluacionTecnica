@@ -1,0 +1,29 @@
+{
+    "name": "evaluacion-tecnica",
+    "version": "1.0.0",
+    "description": "backend de conocimientos tecnicos",
+    "main": "index.js",
+    "type": "module",
+    "scripts": {
+      "start:prod": "node index.js",
+      "start:dev": "nodemon -L"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/Rocio-Ch/evaluacionTecnica.git"
+    },
+    "author": "Rocio Magali Chaparro",
+    "license": "ISC",
+    "bugs": {
+      "url": "https://github.com/Rocio-Ch/evaluacionTecnica/issues"
+    },
+    "homepage": "https://github.com/Rocio-Ch/evaluacionTecnica#readme",
+    "dependencies": {
+      "dotenv": "^16.4.5",
+      "express": "^4.19.2",
+      "mssql": "^10.0.2"
+    },
+    "devDependencies": {
+      "nodemon": "^3.1.0"
+    }
+}  
