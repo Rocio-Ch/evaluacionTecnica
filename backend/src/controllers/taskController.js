@@ -1,11 +1,11 @@
-import sql from "../connection/index"
+import db from "../connection/index.js"
 
 export default {
 
     getTasks: async (req, res) => {
         try {
-            const tasks = await sql.query`select * from task`;
-            res.send(tasks);
+            const { recordset } = await db.query`SELECT * FROM task`;
+            res.send(recordset);
         } catch (error) {
             console.log(error)
         }
@@ -42,6 +42,5 @@ export default {
             
         }
     },
-
-    
+   
 }

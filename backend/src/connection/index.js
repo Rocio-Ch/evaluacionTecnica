@@ -1,8 +1,12 @@
-
 import sql from "mssql"
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const sqlConfig = {
-        database: process.env.DATABASE_URL,
+        user: process.env.DB_USER,
+        password: process.env.DB_PWD,
+        database: process.env.DB_NAME,
         server: 'localhost',
         pool: {
           max: 10,
@@ -10,12 +14,12 @@ const sqlConfig = {
           idleTimeoutMillis: 30000
         },
         options: {
-         /*  encrypt: true, // for azure */
+          encrypt: true, // for azure
           trustServerCertificate: true // change to true for local dev / self-signed certs
         }
 }
 
 //Aca inicia la instancia y lo conecta con la base de datos
-await sql.connect(sqlConfig)
+const db = await sql.connect(sqlConfig)
 
-export default sql
+export default db

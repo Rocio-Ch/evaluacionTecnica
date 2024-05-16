@@ -2,11 +2,11 @@
 
 //Dotenv es una dependencia que carga varibles de entorno
 import dotenv from "dotenv";
-import server from "./src/app.js";
+import app from "./src/app.js"
 
 dotenv.config();
 const PORT = process.env.PORT || 3001;
 
-server.listen(PORT, () => {
+app.listen(PORT, () => {
   console.log(`Server listening in port ${PORT}, Evaluacion Tecnica TANDEM`);
 });
