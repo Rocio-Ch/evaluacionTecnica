@@ -8,6 +8,8 @@ server.get("/", (req, res) => {
   res.send("Test conocimientos tecnicos TANDEM")
 })
 
+
+//Routes
 server.use("/", indexRouter);
 server.use("/task", taskRouter);
 

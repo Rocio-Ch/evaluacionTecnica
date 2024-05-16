@@ -21,9 +21,14 @@ export default {
 
     getTask: async (req, res) => {
         try {
-            
+            const taskId = Number(req.params.id)
+            const { recordset } = await db.query`SELECT * FROM task WHERE id = ${taskId}`;
+            if (recordset) {
+                res.send(recordset);
+            } else 
+                res.staus(404).json({message: 'Task not found'})     
         } catch (error) {
-            
+            console.log(error)
         }
     },
 
@@ -31,15 +36,18 @@ export default {
         try {
             
         } catch (error) {
-            
+            console.log(error)
         }
     },
 
     deleteTask: async (req, res) => {
         try {
-            
+            const taskId = Number(req.params.id)
+            const { recordset } = await db.query`DELETE FROM task WHERE id = ${taskId}`
+            res.send(recordset)
+
         } catch (error) {
-            
+            console.log(error)
         }
     },
    
