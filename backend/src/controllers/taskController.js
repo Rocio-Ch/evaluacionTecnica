@@ -4,7 +4,13 @@ export default {
 
     getTasks: async (req, res) => {
         try {
-            const { recordset } = await db.query`SELECT * FROM task`;
+            const { recordset } = await db.query`
+            SELECT 
+            t.*,
+            s.name AS status_name
+            FROM task t
+            JOIN status s ON t.status_id = s.id;
+            `;
             res.send(recordset);
         } catch (error) {
             console.log(error)
