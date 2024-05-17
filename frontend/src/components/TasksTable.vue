@@ -39,7 +39,7 @@
     </template>
     <v-data-table
       :headers="tasksHeaders"
-      :items="allTasks"
+      :items="tasks"
       :search="search"
       :sort-by="[{ key: 'fullName', order: 'asc' }]"
     >
@@ -54,19 +54,22 @@
 <script setup>
 
 import { ref, onMounted } from "vue"
+import { useTasks } from "@/composables/useTasks"
+import CreateTaskDialog from "./CreateTaskDialog.vue"
 
 const search = ref("")
 const dialogCreateTask = ref(false)
+const { tasks, getTasks } = useTasks()
 
 onMounted(() => {
-    allTasks
+    getTasks();
 })
 
 const tasksHeaders = [
     { align: "start", key: "title", title: "Title" },
     { key: "description", title: "Description" },
-    { key: "status", title: "Status"},
-    { key: "dateExpiration", title: "Expiration" },
+    { key: "status_name", title: "Status"},
+    { key: `expires_at`, title: "Expires on", sortable: false },
     { key: "actions", title: "Actions", sortable: false },
 ]
 
@@ -75,30 +78,6 @@ const openCreateTaskDialog = () => {
     console.log("Open Dialog: 'New task'")
 }
   
-
-const allTasks = [
-    {
-        id: 1,
-        title: "Supermercado",
-        description: "Comprar vainillin, chocolate, leche y huevos",
-        status:  "Done",
-        dateExpiration: "15/05/2024",
-    },
-    {
-        id: 2,
-        title: "Panaderia",
-        description: "Bizcochitos, masas finas y pan",
-        status:  "Undone",
-        dateExpiration: "10/05/2024",
-    },
-    {
-        id: 3,
-        title: "Limpiar la pieza",
-        description: "Pasar blem al escritorio, armar la cama, barrer y encerar",
-        status:  "Undone",
-        dateExpiration: "10/05/2024",
-    }
-]
 
 </script>
   
