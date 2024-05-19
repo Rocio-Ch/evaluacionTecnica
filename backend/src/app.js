@@ -19,5 +19,6 @@ server.use(cors());
 server.use("/", indexRouter);
 server.use("/task", taskRouter);
 server.use("/status", statusRouter);
+server.use("/history", historyRouter);
 
 export default server;
