@@ -45,7 +45,7 @@ export const useTasks = () => {
         }
     }
 
-    const deleteTask = async (id) => {
+    const deleteData = async (id) => {
         try {
           const { data } = await axios.delete(`http://localhost:3001/task/${id}`)
           return data
@@ -63,7 +63,7 @@ export const useTasks = () => {
         getTasks,
         getTask,
         postTask,
-        deleteTask,
+        deleteData,
         removeTask
     }
 }

@@ -41,16 +41,18 @@
       :headers="tasksHeaders"
       :items="tasks"
       :search="search"
-      :sort-by="[{ key: 'title', order: 'asc' }]"
+      :sort-by="[{ key: 'fullName', order: 'asc' }]"
     >
       <template v-slot:item.actions="{ item }">
         <v-icon class="me-2" size="large" @click="console.log(item.id)">mdi-pencil</v-icon>
-        <v-icon class="me-2" size="large" @click="console.log(item.id)">mdi-delete</v-icon>
-        <v-icon size="large" @click="console.log(item.id)">mdi-history</v-icon>
+        <v-icon class="me-2" size="large" @click="openDeleteTaskDialog(item.id)">mdi-delete</v-icon>
+        <v-icon size="large" @click="openHistoryDialog(item.id)">mdi-history</v-icon>
       </template>
     </v-data-table>
     <CreateTaskDialog :dialog="dialogCreateTask" :close="() => (dialogCreateTask = false)" />
     <HistoryTaskDialog :dialog="dialogHistory" :id="idTask" :close="() => (dialogHistory = false)" />
+    <DeleteTaskDialog :dialog="dialogDeleteTask" :id="idTask" :close="() => (dialogDeleteTask = false)" @deleteConfirm="removeTask(idTask)" />
+    
 </template>
   
 <script setup>
@@ -59,13 +61,17 @@ import { ref, onMounted } from "vue"
 import { useTasks } from "@/composables/useTasks"
 import { useHistory } from "@/composables/useHistory"
 import CreateTaskDialog from "./CreateTaskDialog.vue"
+import HistoryTaskDialog from "./HistoryTaskDialog.vue"
+import DeleteTaskDialog from "./DeleteTaskDialog.vue"
 
 const search = ref("")
 const dialogCreateTask = ref(false)
 const dialogHistory = ref(false)
+const dialogDeleteTask = ref(false)
 
-const { tasks, getTasks } = useTasks()
+const { tasks, getTasks, removeTask } = useTasks()
 const { idTask } = useHistory()
+
 
 onMounted(() => {
     getTasks();
@@ -81,14 +87,19 @@ const tasksHeaders = [
 
 const openCreateTaskDialog = () => {
     dialogCreateTask.value = true
-    console.log("Open Dialog: 'New task'")
 }
 
 const openHistoryDialog = (id) => {
     dialogHistory.value = true
     idTask.value = id
 }
-  
+
+const openDeleteTaskDialog = (id) => {
+    dialogDeleteTask.value = true
+    idTask.value = id
+}
+
+
 
 </script>
   
