@@ -41,25 +41,31 @@
       :headers="tasksHeaders"
       :items="tasks"
       :search="search"
-      :sort-by="[{ key: 'fullName', order: 'asc' }]"
+      :sort-by="[{ key: 'title', order: 'asc' }]"
     >
       <template v-slot:item.actions="{ item }">
         <v-icon class="me-2" size="large" @click="console.log(item.id)">mdi-pencil</v-icon>
-        <v-icon size="large" @click="console.log(item.id)">mdi-delete</v-icon>
+        <v-icon class="me-2" size="large" @click="console.log(item.id)">mdi-delete</v-icon>
+        <v-icon size="large" @click="console.log(item.id)">mdi-history</v-icon>
       </template>
     </v-data-table>
     <CreateTaskDialog :dialog="dialogCreateTask" :close="() => (dialogCreateTask = false)" />
+    <HistoryTaskDialog :dialog="dialogHistory" :id="idTask" :close="() => (dialogHistory = false)" />
 </template>
   
 <script setup>
 
 import { ref, onMounted } from "vue"
 import { useTasks } from "@/composables/useTasks"
+import { useHistory } from "@/composables/useHistory"
 import CreateTaskDialog from "./CreateTaskDialog.vue"
 
 const search = ref("")
 const dialogCreateTask = ref(false)
+const dialogHistory = ref(false)
+
 const { tasks, getTasks } = useTasks()
+const { idTask } = useHistory()
 
 onMounted(() => {
     getTasks();
@@ -77,17 +83,26 @@ const openCreateTaskDialog = () => {
     dialogCreateTask.value = true
     console.log("Open Dialog: 'New task'")
 }
+
+const openHistoryDialog = (id) => {
+    dialogHistory.value = true
+    idTask.value = id
+}
   
 
 </script>
   
 <style>
 
+.v-toolbar {
+    margin-top: 0px !important;
+}
+
 thead {
     background-color: #e94408;
     /*     background-color: #18a35e;
         background-color: #14a3c6; */
-    color: white;
+    color: #fff;
 }
 
 .newTask:hover {
@@ -103,6 +118,10 @@ input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
+}
+
+.v-input {
+    margin-bottom: 0px !important;
 }
 
 </style>
