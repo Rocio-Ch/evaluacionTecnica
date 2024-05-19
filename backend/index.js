@@ -1,6 +1,6 @@
-//En el package.json instale nodemon no como una dependencia del proyecto, si no como una dependencia de desarrollo: el cual ayuda a refrescar automaticamente la aplicacion cuando detecta un cambio
+//In the package.json, I installed nodemon not as a project dependency, but as a development dependency: it helps automatically refresh the application when it detects a change
 
-//Dotenv es una dependencia que carga varibles de entorno
+//Dotenv is a dependency that loads environment variables
 import dotenv from "dotenv";
 import app from "./src/app.js"
 

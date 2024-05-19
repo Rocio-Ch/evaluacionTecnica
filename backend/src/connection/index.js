@@ -19,7 +19,7 @@ const sqlConfig = {
         }
 }
 
-//Aca inicia la instancia y lo conecta con la base de datos
+//Here begins the instance and connects it to the database
 const db = await sql.connect(sqlConfig)
 
 export default db
