@@ -3,6 +3,7 @@ import cors from "cors";
 import indexRouter from "./routes/indexRouter.js"
 import taskRouter from "./routes/TaskRouter.js"
 import statusRouter from "./routes/StatusRouter.js";
+import historyRouter from "./routes/HistoryRouter.js"
 
 const server = express();
 
