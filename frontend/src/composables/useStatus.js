@@ -3,12 +3,14 @@ import { ref } from "vue";
 
 export const useStatus = () => {
 
-    const status = ref([])
+  const statusNames = ref([])
+  const status = ref()
 
     const getAllStatus = async () => {
         try {
           const { data } = await axios.get('http://localhost:3001/status')
-          status.value = data.map(status => status.name)
+          statusNames.value = data.map(status => status.name)
+          status.value = data
         } catch (error) {
           console.log(error)
         }
@@ -24,8 +26,8 @@ export const useStatus = () => {
     } */
 
     return {
-        status,
-        getAllStatus,
-/*         getStatus, */
+      statusNames,
+      status,
+      getAllStatus,
     }
 }
