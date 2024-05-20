@@ -13,12 +13,11 @@ export const useFormatDate = () => {
         })
     }
 
-    //I use two parameters here because I need it both to format the date from the input date when sending it to the back-end and from the back-end when displaying it in the table when adding a single task
-    const formatDate = (item, formatD) => {
-        const formattedDate = format(new Date(item.expires_at), formatD)
+    const formatDate = (item, dateProp, formatD) => {
+        const formattedDate = format(new Date(item[dateProp]), formatD);
         return {
             ...item,
-            expires_at: formattedDate
+            [dateProp]: formattedDate
         };
     }
 

@@ -33,7 +33,7 @@ export const useTasks = () => {
             const { data } = await axios.post(
                 "http://localhost:3001/task", editedTask
           )
-        return formatDate(data, 'dd-MM-yy')
+        return formatDate(data, 'expires_at', 'dd-MM-yy')
         } catch (error) {
             console.error(error)
         }

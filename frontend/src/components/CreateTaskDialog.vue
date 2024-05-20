@@ -26,7 +26,7 @@
                     <v-col cols="12" md="5.5" sm="6">
                         <!-- SELECT STATUS -->
                         <v-select
-                            v-model="newTask.status_name"
+                            v-model="newTask.status_id"
                             :rules="rules.description"
                             label="Status"
                             :items="statusNames"
@@ -95,28 +95,28 @@ const newTask = ref({
 })
 
 const rules = {
-  title: [
-    (v) => !!v || "Required", 
-    (v) => !!v && v.length >= 3  || "At least 3 characters",
-    (v) => !!v && v.length <= 35 || "Max 35 characters",
-  ],
-  description: [
-    (v) => !!v || "Required",
-    (v) => !!v && v.length >= 3 || "At least 3 characters",
-    (v) => !!v && v.length <= 80 || "Max 80 characters",
-  ],
-  status: [
-    (v) => !!v || "Required",
-  ],
-  expires: [
-    (v) => !!v || "Required",
-  ]
+    title: [
+        (v) => !!v || "Required", 
+        (v) => !!v && v.length >= 3  || "At least 3 characters",
+        (v) => !!v && v.length <= 35 || "Max 35 characters",
+    ],
+    description: [
+        (v) => !!v || "Required",
+        (v) => !!v && v.length >= 3 || "At least 3 characters",
+        (v) => !!v && v.length <= 80 || "Max 80 characters",
+    ],
+    status: [
+        (v) => !!v || "Required",
+    ],
+    expires: [
+        (v) => !!v || "Required",
+    ]
 }
 
 
 const saveTask = async () => {
     const idStatus = status.value.find(s => s.name === newTask.value.status_id);
-    formatDate(newTask.value, 'yyyy-MM-dd HH:mm:ss.SSS')
+    formatDate(newTask.value, 'expires_at', 'yyyy-MM-dd HH:mm:ss.SSS')
     newTask.value.status_id = idStatus.id
     task.value = {...newTask.value}
     //me falta chequear la validacion y si pasa la validacion me tengo que fijar si esta creando o editando un usuario para utilizar distintos emits y funciones

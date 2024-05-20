@@ -19,15 +19,14 @@ export const useHistory = () => {
       }
 
       const historyFormattedDates = (history) => {
-          return history.map(element => {
-            const formattedDate = formatDate(element.update_status_at, 'dd-MM-yy')
+        return history.map(element => {
+            const formattedDate = formatDate(element, 'update_status_at', 'dd-MM-yy');
             const comment = element.comment || "no comments";
             return {
-                ...element,
-                update_status_at: formattedDate,
+                ...formattedDate,
                 comment: comment
             };
-        })
+        });
     }
 
     return {
