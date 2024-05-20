@@ -15,7 +15,7 @@
                     v-model="newTask.description"
                     :rules="rules.description"
                     :maxlength="maxChar"
-                    :counter="200"
+                    :counter="80"
                     class="mb-2"
                     rows="5"
                     variant="outlined"
@@ -29,10 +29,9 @@
                             v-model="newTask.status_name"
                             :rules="rules.description"
                             label="Status"
-                            :items="status"
-                            >
-                        ></v-select>
-                        <!-- :items="['Completed', 'Pending', 'In progress']" -->
+                            :items="statusNames"
+                        >
+                        </v-select>
                     </v-col>
                     <v-col cols="12" md="6.5" sm="6">
                         <!-- INPUT DATE FROM **LABS** in VUETIFY -->
@@ -40,6 +39,7 @@
                             label="Expiration"
                             v-model="newTask.expires_at"
                             :rules="rules.expires"
+                            :min="minExpirationDate"
                         ></v-date-input>
                     </v-col>
                 </v-row>
@@ -72,13 +72,16 @@ import { VDateInput } from 'vuetify/labs/VDateInput'
 import { ref, onMounted } from 'vue'
 import { useTasks } from '@/composables/useTasks';
 import { useStatus } from '@/composables/useStatus';
+import { useFormatDate } from '@/composables/useFormatDate';
 
 const maxChar = ref(80)
-const task = ref({})
+const minExpirationDate = new Date().toISOString().substr(0, 10)
 const props = defineProps(["dialog", "close"])
+const emit = defineEmits(["addNewTask"])
 
-const { tasks, postTask } = useTasks()
-const { status, getAllStatus } = useStatus()
+const { postData, task } = useTasks()
+const { statusNames, getAllStatus, status } = useStatus()
+const { formatDate } = useFormatDate()
 
 onMounted(() => {
     getAllStatus()
@@ -87,37 +90,41 @@ onMounted(() => {
 const newTask = ref({
     title: '',
     description: '',
-    status_name: '',
-    /* status_id: null, */ //hacer que al guardar la nueva tarea se guarde con el id y no con el nombre para que no haya inconvenientes con el back
-    expires_at: null, //2024-05-27 00:00:00.000 formatear la hora que guarda el input date en ese formato para que no haya inconvenientes con la base de datos
-
-    //tengo que hacer un useFormat para utilizar la misma funcion sin repetir codigo y dejar algun comentario si no lo hice de por que instale esa dependencia
+    status_id: '',
+    expires_at: null,
 })
 
-/* const rules = {
+const rules = {
   title: [
-    (value) => !!value || "Required", 
-    (value) => !!value && value.length >= 3  || "At least 3 characters",
-    (value) => !!value && value.length <= 35 || "Max 35 characters",
+    (v) => !!v || "Required", 
+    (v) => !!v && v.length >= 3  || "At least 3 characters",
+    (v) => !!v && v.length <= 35 || "Max 35 characters",
   ],
   description: [
-    (value) => !!value || "Required",
-    (value) => !!value && value.length >= 3 || "At least 3 characters",
-    (value) => !!value && value.length <= 80 || "Max 80 characters",
+    (v) => !!v || "Required",
+    (v) => !!v && v.length >= 3 || "At least 3 characters",
+    (v) => !!v && v.length <= 80 || "Max 80 characters",
   ],
   status: [
-    (value) => !!value || "Required",
+    (v) => !!v || "Required",
   ],
   expires: [
-    (value) => !!value || "Required",
+    (v) => !!v || "Required",
   ]
-} */
+}
 
 
 const saveTask = async () => {
-    task.value = newTask.value
-    console.log(task.value)
+    const idStatus = status.value.find(s => s.name === newTask.value.status_id);
+    formatDate(newTask.value, 'yyyy-MM-dd HH:mm:ss.SSS')
+    newTask.value.status_id = idStatus.id
+    task.value = {...newTask.value}
+    //me falta chequear la validacion y si pasa la validacion me tengo que fijar si esta creando o editando un usuario para utilizar distintos emits y funciones
+    const saveNewTask = await postData()
+    emit("addNewTask", saveNewTask)
+
     props.close()
+    task.value = {}
 }
 
 

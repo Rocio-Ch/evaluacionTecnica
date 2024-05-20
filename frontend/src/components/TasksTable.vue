@@ -49,10 +49,9 @@
         <v-icon size="large" @click="openHistoryDialog(item.id)">mdi-history</v-icon>
       </template>
     </v-data-table>
-    <CreateTaskDialog :dialog="dialogCreateTask" :close="() => (dialogCreateTask = false)" />
+    <CreateTaskDialog :dialog="dialogCreateTask" :close="() => (dialogCreateTask = false)" @addNewTask="addTask" />
     <HistoryTaskDialog :dialog="dialogHistory" :id="idTask" :close="() => (dialogHistory = false)" />
     <DeleteTaskDialog :dialog="dialogDeleteTask" :id="idTask" :close="() => (dialogDeleteTask = false)" @deleteConfirm="removeTask(idTask)" />
-    
 </template>
   
 <script setup>
@@ -69,7 +68,7 @@ const dialogCreateTask = ref(false)
 const dialogHistory = ref(false)
 const dialogDeleteTask = ref(false)
 
-const { tasks, getTasks, removeTask } = useTasks()
+const { tasks, getTasks, removeTask, addTask } = useTasks()
 const { idTask } = useHistory()
 
 

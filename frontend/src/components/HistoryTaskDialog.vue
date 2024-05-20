@@ -1,4 +1,4 @@
-<template><!-- activator="parent" -->
+<template>
     <v-container>
         <v-dialog v-model="props.dialog" persistent max-width="500">
             <template v-slot:default="{ isActive }">
@@ -20,8 +20,6 @@
                 >
                 </v-data-table>
             </template>
-
-
         </v-dialog>
     </v-container>
 </template>
@@ -41,7 +39,6 @@ watch(() => props.id, () => {
     history.value = null
   }
 })
-
 
 const historyHeaders = [
     { align: "start", key: "status_name", title: "Status" },
