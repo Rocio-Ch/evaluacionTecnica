@@ -8,7 +8,7 @@ import historyRouter from "./routes/HistoryRouter.js"
 const server = express();
 
 server.get("/", (req, res) => {
-  res.send("Test conocimientos tecnicos TANDEM")
+  res.send("Welcome to MEDNAT")
 })
 
 //Added Express here because it didn't allow me to make a JSON formatted post
