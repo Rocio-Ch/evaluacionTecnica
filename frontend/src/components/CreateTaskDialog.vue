@@ -64,6 +64,19 @@
         </v-card>
         </template>
     </v-dialog>
+    <!-- ALERT  -->
+    <v-snackbar 
+        v-model="showSuccessAlert" 
+        :timeout="1500" 
+        color="success"
+        elevation="24"
+    >
+        <p class="alertTitle">
+            <v-icon icon="mdi-check-circle"></v-icon>
+            Added
+        </p>
+      <p class="alertMsj">Task added <strong>successfully</strong>.</p>
+    </v-snackbar>
 </template>
   
 <script setup>
@@ -75,6 +88,7 @@ import { useStatus } from '@/composables/useStatus';
 import { useFormatDate } from '@/composables/useFormatDate';
 
 const maxChar = ref(80)
+const showSuccessAlert = ref(false)
 const minExpirationDate = new Date().toISOString().substr(0, 10)
 const props = defineProps(["dialog", "close"])
 const emit = defineEmits(["addNewTask"])
@@ -124,7 +138,8 @@ const saveTask = async () => {
     emit("addNewTask", saveNewTask)
 
     props.close()
-    task.value = {}
+    showSuccessAlert.value = true
+    newTask.value = {}
 }
 
 
@@ -140,6 +155,36 @@ const saveTask = async () => {
 .v-picker__actions button:nth-child(2) {
     background-color: #3a8e3a;
     color: #fff;
+}
+
+.v-snackbar__wrapper {
+    border: 1px solid #4caf50 !important;
+    position: absolute;
+    right: 0;
+    bottom: 50px;
+}
+
+.v-snackbar__content {
+    height: 90px !important;
+    width: 330px !important;
+    font-size: 18px;
+    color: white;
+    background-color: #4caf50;
+    padding-left: 10px;
+}
+
+.alertTitle {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.alertTitle .v-icon {
+    margin-right: 10px;
+}
+
+.alertMsj {
+    margin-left: 42px;
+    font-size: 1rem;
 }
 
 </style>

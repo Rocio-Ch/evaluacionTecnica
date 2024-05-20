@@ -41,7 +41,7 @@
       :headers="tasksHeaders"
       :items="tasks"
       :search="search"
-      :sort-by="[{ key: 'fullName', order: 'asc' }]"
+      :sort-by="[{ key: 'title', order: 'asc' }]"
     >
       <template v-slot:item.actions="{ item }">
         <v-icon class="me-2" size="large" @click="console.log(item.id)">mdi-pencil</v-icon>
