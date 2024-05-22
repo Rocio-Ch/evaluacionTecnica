@@ -60,10 +60,6 @@ const historyHeaders = [
     padding: 15px 15px 20px 15px;
 }
 
-.v-overlay__content {
-    border: 1px solid #000;
-}
-
 h3 {
     color: #fff;
 }

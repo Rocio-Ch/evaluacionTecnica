@@ -3,7 +3,7 @@
         <RouterLink to="/" class="navLink" style="display: flex; align-items: center;">
             <img class="diamond" src="../assets/diamond.svg"></img>
             <v-toolbar-title class="toolbar-title">
-                Mednat-SSR
+                Mednat
             </v-toolbar-title>
         </RouterLink>
         <v-layout 
