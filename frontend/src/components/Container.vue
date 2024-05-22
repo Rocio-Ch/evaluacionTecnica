@@ -20,7 +20,7 @@
     position: relative;
     background-image: url("../assets/pattern-banner.jpg");
     background-size: cover;
-    height: calc(100% - 114px);
+    height: 100%;
 }
 
 .container {
