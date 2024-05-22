@@ -7,11 +7,11 @@ export const useHistory = () => {
 
     const { formatDate } = useFormatDate()
     const history = ref()
-    const idTask = ref(null)
+    const idHistory = ref(null)
 
-    const getHistory = async (taskId) => {
+    const getHistory = async (historyId) => {
         try {
-          const { data } = await axios.get(`http://localhost:3001/history/${taskId}`)
+          const { data } = await axios.get(`http://localhost:3001/history/${historyId}`)
           history.value = historyFormattedDates(data)
         } catch (error) {
           console.log(error)
@@ -32,6 +32,6 @@ export const useHistory = () => {
     return {
         getHistory,
         history,
-        idTask,
+        idHistory,
     }
 }

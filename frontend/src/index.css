@@ -7,3 +7,8 @@ body, #app {
     color: black;
     font-family: "Poppins", sans-serif;
 }
+
+#app {
+    display: flex;
+    flex-direction: column;
+}

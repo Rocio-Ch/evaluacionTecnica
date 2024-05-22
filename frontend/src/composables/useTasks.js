@@ -1,13 +1,20 @@
 import axios from "axios";
 import { ref } from "vue";
 import { useFormatDate } from "../composables/useFormatDate"
-
+import { toDate } from "date-fns";
 
 export const useTasks = () => {
 
     const { frontFormattedDates, formatDate } = useFormatDate()
+    const idTask = ref()
     const tasks = ref()
-    const task = ref()
+    const resetTask = {
+        title: '',
+        description: '',
+        status_id: 2,
+        expires_at: new Date(),
+      }
+    const task = ref({...resetTask})
 
     const getTasks = async () => {
         try {
@@ -21,6 +28,7 @@ export const useTasks = () => {
     const getTask = async (id) => {
         try {
             const { data } = await axios.get(`http://localhost:3001/task/${id}`)
+            data.expires_at = toDate(data.expires_at)
             task.value = data
         } catch (error) {
             
@@ -33,11 +41,24 @@ export const useTasks = () => {
             const { data } = await axios.post(
                 "http://localhost:3001/task", editedTask
           )
-        return formatDate(data, 'expires_at', 'dd-MM-yy')
+          return formatDate(data, 'expires_at', 'dd-MM-yy')
         } catch (error) {
             console.error(error)
         }
     }
+
+    const updateData = async () => {
+        try {
+            const editedTask = {...task.value}
+            const { data } = await axios.put(
+              `http://localhost:3001/task/${editedTask.id}`,
+            editedTask
+          )
+          return data
+        } catch (error) {
+          console.error(error)
+        }
+      }
 
     const deleteData = async (id) => {
         try {
@@ -56,14 +77,28 @@ export const useTasks = () => {
         tasks.value.push(task)
     }
 
+    const modifyTask = (editedTask) => {
+        tasks.value = tasks.value.map((task) => {
+          if (task.id === editedTask.id) {
+            return formatDate(editedTask, 'expires_at', 'dd-MM-yy')
+          }
+          return task
+        })
+        idTask.value = null
+    }
+
     return {
         tasks,
+        idTask,
         getTasks,
         task,
         getTask,
         postData,
         deleteData,
         removeTask,
-        addTask
+        addTask,
+        modifyTask,
+        updateData,
+        resetTask
     }
 }
