@@ -6,8 +6,7 @@ export default {
         try {
             const taskId = Number(req.params.id)
             const { recordset } = await db.query`
-            SELECT h.*, 
-            s.name as status_name
+            SELECT h.*, s.name as status_name
             FROM history h
             JOIN status s ON h.status_id = s.id
             WHERE h.task_id = ${taskId};    

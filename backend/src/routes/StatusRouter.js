@@ -5,6 +5,5 @@ const statusRouter = Router();
 
 // Routes
 statusRouter.get("/", statusController.getAllStatus)
-statusRouter.get("/:id", statusController.getStatus) 
 
 export default statusRouter;

@@ -3,7 +3,7 @@ import { Router } from "express";
 
 const taskRouter = Router();
 
-// Rutas
+// Routes
 taskRouter.get("/", taskController.getTasks)
 taskRouter.post("/", taskController.createTask)
 taskRouter.get("/:id", taskController.getTask) 
