@@ -84,10 +84,10 @@ const maxChar = ref(80)
 const minExpirationDate = new Date().toISOString().substr(0, 10)
 
 const toast = useToast()
-const props = defineProps(["dialog", "close", "id"])
+const props = defineProps(["dialog", "close", "id", "taskDeleted"])
 const emit = defineEmits(["addNewTask", "editTask"])
 
-const { postData, task, getTask, resetTask, updateData } = useTasks()
+const { postData, task, getTask, resetTask, updateData, getDeletedTask, updateDeletedData } = useTasks()
 const { getAllStatus, status } = useStatus()
 const { formatDate } = useFormatDate()
 
@@ -103,8 +103,16 @@ watch(() => props.id, async () => {
   }
 })
 
+watch(() => props.taskDeleted, async () => {
+    if (!props.taskDeleted.is_active) {
+        await getDeletedTask(props.taskDeleted.id)
+    } else {
+        task.value = resetTask
+    }
+})
+
 const formTitle = computed(() => {
-  return task.value.id ? 'Edit Task' : 'New Task'
+    return task.value.id ? (props.taskDeleted ? 'Restore Task' : 'Edit Task') : 'New Task'
 })
 
 const rules = {
@@ -128,11 +136,15 @@ const rules = {
 
 const saveTask = async () => {
 
-    const { valid } = await formRef.value.validate()
+const { valid } = await formRef.value.validate()
 
     if (valid) {
         task.value = formatDate(task.value, 'expires_at', 'yyyy-MM-dd HH:mm:ss.SSS')
         if (task.value.id) {
+            if (props.taskDeleted) {
+                const editedTask = await updateDeletedData(task.value)
+                emit("editTask", editedTask)
+            }
             const editedTask = await updateData(task.value)
             emit("editTask", editedTask)
             toast.success("Edited successfully!")

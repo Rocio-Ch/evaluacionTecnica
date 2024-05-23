@@ -28,23 +28,37 @@
     text-align: center;
 }
 
-.title {
+.title, .title2 {
     position: absolute;
-    top: 30%;
-    margin-left: 100px;
-    font-family: "Poppins", sans-serif;
-    font-size: 3rem;
     color: black;
+    font-family: "Poppins", sans-serif;
+}
+
+.title {
+    top: 30%;
+    font-size: 2rem;
+    margin-left: 50px;
 }
 
 .title2 {
-    position: absolute;
-    top: 38%;
-    margin-left: 120px;
+    top: 45%;
+    margin-left: 50px;
+    font-size: 1.2rem;
     margin-top: 20px;
-    font-family: "Poppins", sans-serif;
-    font-size: 1.5rem;
-    color: black;
+}
+
+
+@media (min-width: 960px) {
+    .title {
+        margin-left: 100px;
+        font-size: 3rem;
+    }
+
+    .title2 {
+        top: 38%;
+        margin-left: 120px;        
+        font-size: 1.5rem;
+    }
 }
 
 </style>

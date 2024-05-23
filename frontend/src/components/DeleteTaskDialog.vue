@@ -15,8 +15,10 @@
 <script setup>
 
 import { useTasks } from '@/composables/useTasks';
+import { useToast } from 'vue-toastification';
 
 const { deleteData } = useTasks()
+const toast = useToast()
 const props = defineProps(["dialog", "close", "id"])
 const emit = defineEmits(["deleteConfirm"])
 
@@ -24,6 +26,7 @@ const emit = defineEmits(["deleteConfirm"])
 const deleteTask = async () => {
   const deleteItemConfirm = await deleteData(props.id)
   emit("deleteConfirm", deleteItemConfirm.id)
+  toast.success("¡Task deleted successfully!")
   props.close()
 }
 

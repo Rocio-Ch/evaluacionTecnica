@@ -106,8 +106,6 @@ const openEditTaskDialog = (id) => {
     idTask.value = id
 }
 
-
-
 </script>
   
 <style>
@@ -122,8 +120,6 @@ const openEditTaskDialog = (id) => {
 
 thead {
     background-color: #e94408;
-    /*     background-color: #18a35e;
-        background-color: #14a3c6; */
     color: #fff;
 }
 
@@ -134,12 +130,6 @@ thead {
 
 .v-toolbar__content > .v-btn:last-child  {
     margin-inline-end: 20px;
-}
-
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
 }
 
 .v-input {

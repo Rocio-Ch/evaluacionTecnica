@@ -70,13 +70,4 @@ h3 {
     justify-content: center;
 }
 
-.v-picker__actions button {
-    border-radius: 24px;
-}
-
-.v-picker__actions button:nth-child(2) {
-    background-color: #3a8e3a;
-    color: #fff;
-}
-
 </style>

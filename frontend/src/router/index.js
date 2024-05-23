@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Container from "@/components/Container.vue";
+import Home from "@/components/Home.vue";
 import NotFound from "@/components/NotFound.vue";
+import RecycleBin from "@/components/RecycleBin.vue"
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -8,12 +9,17 @@ const router = createRouter({
        {
           path: '/',
           name: "Home",
-          component: Container
+          component: Home
        },
        {
           path: '/tasks',
           name: 'Tasks',
           component: () => import('../components/TasksTable.vue')
+       },
+       {
+         path: '/recycle-bin',
+         name: 'Reicle Bin',
+         component: RecycleBin,
        },
        {
          path: '/:pathMatch(.*)',
