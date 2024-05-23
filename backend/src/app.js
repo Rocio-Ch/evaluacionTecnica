@@ -17,9 +17,9 @@ server.use(express.json({ limit: "50mb" }));
 server.use(cors());
 
 //Routes
-server.use("/", indexRouter);
 server.use("/task", taskRouter);
 server.use("/status", statusRouter);
 server.use("/history", historyRouter);
+server.use("/", indexRouter);
 
 export default server;

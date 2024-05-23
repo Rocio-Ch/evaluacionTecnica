@@ -15,7 +15,7 @@ export default {
             console.log(error)
         }
     },
-    
+
     createTask: async (req, res) => {
         try {
             const { title, description, status_id, expires_at } = req.body;
@@ -96,6 +96,78 @@ export default {
             res.send(recordset)
         } catch (error) {
             console.log(error)
+        }
+    },
+
+    /* INACTIVE TASK --- RECOVERY FUNCTIONS */
+    getDeletedTasks: async (req, res) => {
+        try {
+            const { recordset } = await db.query`
+            SELECT 
+            t.*,
+            s.name AS status_name
+            FROM task t
+            JOIN status s ON t.status_id = s.id
+            WHERE t.is_active = 0;
+            `;
+            res.send(recordset)
+        } catch (error) {
+            console.log(error)
+        }
+    },
+
+    getDeleteTask: async (req, res) => {
+        try {
+            const taskId = Number(req.params.id)
+
+            const { recordset } = await db.query`
+                SELECT t.*, s.name AS status_name
+                FROM task t
+                JOIN status s ON t.status_id = s.id
+                WHERE t.id = ${taskId} AND t.is_active = 0;
+            `;
+            if (recordset.length > 0) {
+                res.send(recordset[0]);
+            } else {
+                res.status(404).json({ message: 'Error recovering task: task not found' })
+            }
+        } catch (error) {
+            console.error('Error recovering task:', error)
+            res.status(500).send('Error recovering task')
+        }
+    },
+
+    updateRecoveredTask: async (req, res) => {
+        try {
+            const taskId = Number(req.params.id)
+            const { title, description, status_id, expires_at } = req.body;
+    
+            const { recordset } = await db.query(`
+                DECLARE @UpdatedTask TABLE (id INT);
+    
+                UPDATE task
+                SET title = '${title}', description = '${description}', status_id = ${status_id}, expires_at = '${expires_at}'
+                OUTPUT inserted.id INTO @UpdatedTask
+                WHERE id = ${taskId};
+    
+                UPDATE task
+                SET is_active = 1
+                WHERE id = ${taskId};
+    
+                SELECT t.*, s.name AS status_name
+                FROM task t
+                JOIN status s ON t.status_id = s.id
+                WHERE t.id = (SELECT id FROM @UpdatedTask);
+            `);
+    
+            if (recordset.length === 0) {
+                return res.status(404).send('Task not found');
+            }
+    
+            res.status(200).json(recordset[0])
+        } catch (error) {
+            console.error('Update task error:', error)
+            res.status(500).send('Update task error')
         }
     },
 }
