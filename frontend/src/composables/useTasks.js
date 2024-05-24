@@ -8,6 +8,7 @@ export const useTasks = () => {
     const { frontFormattedDates, formatDate } = useFormatDate()
     const idTask = ref()
     const tasks = ref()
+    const comment = ref("")
     const deletedTasks = ref()
     const resetTask = {
         title: '',
@@ -51,9 +52,10 @@ export const useTasks = () => {
     const updateData = async () => {
         try {
             const editedTask = {...task.value}
+            editedTask.comment = comment.value
             const { data } = await axios.put(
               `http://localhost:3001/task/${editedTask.id}`,
-            editedTask
+              editedTask
           )
           return data
         } catch (error) {
@@ -127,7 +129,7 @@ export const useTasks = () => {
           const editedTask = {...task.value}
           const { data } = await axios.put(
             `http://localhost:3001/task/deleted/${editedTask.id}`,
-          editedTask
+            editedTask
         )
         return data
       } catch (error) {
@@ -153,6 +155,7 @@ export const useTasks = () => {
         getDeletedTask,
         modifyDeletedTask,
         removeDeletedTask,
-        updateDeletedData
+        updateDeletedData,
+        comment
     }
 }

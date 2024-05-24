@@ -47,6 +47,12 @@
                             ></v-date-input>
                         </v-col>
                     </v-row>
+                    <div v-if="task.id">
+                        <v-text-field
+                            v-model="comment"
+                            label="Comment">
+                        </v-text-field>
+                    </div>
                 </v-col>
                 <v-card-actions class="my-2 d-flex justify-end">
                     <v-btn
@@ -87,7 +93,7 @@ const toast = useToast()
 const props = defineProps(["dialog", "close", "id", "taskDeleted"])
 const emit = defineEmits(["addNewTask", "editTask"])
 
-const { postData, task, getTask, resetTask, updateData, getDeletedTask, updateDeletedData } = useTasks()
+const { postData, task, getTask, resetTask, updateData, getDeletedTask, updateDeletedData, comment } = useTasks()
 const { getAllStatus, status } = useStatus()
 const { formatDate } = useFormatDate()
 
@@ -136,7 +142,7 @@ const rules = {
 
 const saveTask = async () => {
 
-const { valid } = await formRef.value.validate()
+    const { valid } = await formRef.value.validate()
 
     if (valid) {
         task.value = formatDate(task.value, 'expires_at', 'yyyy-MM-dd HH:mm:ss.SSS')
@@ -145,7 +151,7 @@ const { valid } = await formRef.value.validate()
                 const editedTask = await updateDeletedData(task.value)
                 emit("editTask", editedTask)
             }
-            const editedTask = await updateData(task.value)
+            const editedTask = await updateData()
             emit("editTask", editedTask)
             toast.success("Edited successfully!")
         } else {
