@@ -61,15 +61,19 @@ export default {
     updateTask: async (req, res) => {
         try {
             const taskId = Number(req.params.id)
-            const { title, description, status_id, expires_at } = req.body;
+            const { title, description, status_id, expires_at, comment } = req.body;
+            const now = new Date()
     
             const { recordset } = await db.query(`
                 DECLARE @UpdatedTask TABLE (id INT);
     
                 UPDATE task
-                SET title = '${title}', description = '${description}', status_id = ${status_id}, expires_at = '${expires_at}'
+                SET title = '${title}', description = '${description}', status_id = ${status_id}, expires_at = '${expires_at}', updated_at = '${now.toISOString()}'
                 OUTPUT inserted.id INTO @UpdatedTask
                 WHERE id = ${taskId};
+
+                INSERT INTO history (comment, task_id, status_id)
+                VALUES ('${comment}', '${taskId}', '${status_id}');
     
                 SELECT t.*, s.name AS status_name
                 FROM task t
