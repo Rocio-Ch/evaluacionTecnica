@@ -1,4 +1,4 @@
-# ***Test de conocimientos: Back-End, Base de datos y Front-end***
+# ***Task Manager: Back-End, Base de datos y Front-end***
 
 #### Realice este test de conocimientos con el fin de evaluar la capacidad de desarrollar una aplicación completa, tanto en diseño como en código utilizando Vue 3 en el front-end, Node.js en el back-end y SQL Server como base de datos.
 
