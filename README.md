@@ -1,8 +1,23 @@
 # ***Task Manager:***
 
-##### La aplicacion fue creada con Vue 3, axios, vue-router y vuetify. Realice este test de conocimientos con el fin de evaluar la capacidad de desarrollar una aplicación completa, tanto en diseño como en código utilizando Vue 3 en el front-end, Node.js en el back-end y SQL Server como base de datos.
+##### Realice este proyecto con el fin de evaluar y poner en práctica el desarrollo de una aplicación completa utilizando:
+Backend: 
+- Node Js
+- Express
+- SQL Server
+- MSSQL
+- Cors
+- Dotenv
+- Nodemon
 
-##### La aplicacion "Task Manager" fue creada con Node, Express, MSSQL, Dotenv, Cors, Nodemon. En ella podremos crear tareas, editarlas, eliminarlas o restaurarlas desde la papelera de reciclaje. Al crear una tarea tendremos los campos titulo, una descripción, un estado y una fecha de vencimiento para poder identificarla.
+Frontend:
+- Vue 3
+- Vuetify
+- Vue Router
+- Axios 
+
+
+##### Con "Task Manager" podremos crear tareas, editarlas, eliminarlas o restaurarlas desde la papelera de reciclaje. Al crear una tarea tendremos los campos titulo, una descripción, un estado y una fecha de vencimiento para poder identificarla.
 
 ##### Las carpetas backend y frontend contienen los README.md correspondientes para utilizar la aplicación correctamente. 
 
