@@ -1,12 +1,27 @@
-# ***Task Manager***
+# ***Task Manager:***
 
-
-##### Test de conocimientos
 ##### La aplicacion fue creada con Vue 3, axios, vue-router y vuetify. Realice este test de conocimientos con el fin de evaluar la capacidad de desarrollar una aplicación completa, tanto en diseño como en código utilizando Vue 3 en el front-end, Node.js en el back-end y SQL Server como base de datos.
 
 ##### La aplicacion "Task Manager" fue creada con Node, Express, MSSQL, Dotenv, Cors, Nodemon. En ella podremos crear tareas, editarlas, eliminarlas o restaurarlas desde la papelera de reciclaje. Al crear una tarea tendremos los campos titulo, una descripción, un estado y una fecha de vencimiento para poder identificarla.
 
 ##### Las carpetas backend y frontend contienen los README.md correspondientes para utilizar la aplicación correctamente. 
+
+### Imágenes del proyecto
+
+Inicio
+![Preview del proyecto](./previews/mednat-home.png)
+
+Tareas
+![Preview del proyecto](./previews/mednat-tasks.png)
+
+Historial
+![Preview del proyecto](./previews/mednat-history.png)
+
+Papelera
+![Preview del proyecto](./previews/mednat-recycleBin.png)
+
+Restaurar Tarea
+![Preview del proyecto](./previews/mednat-restoredTask.png)
 
 
 
