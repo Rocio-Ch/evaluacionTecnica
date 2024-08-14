@@ -10,14 +10,14 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/Rocio-Ch/evaluacionTecnica.git"
+        "url": "git+https://github.com/Rocio-Ch/taskManager.git"
     },
     "author": "Rocio Magali Chaparro",
     "license": "ISC",
     "bugs": {
-        "url": "https://github.com/Rocio-Ch/evaluacionTecnica/issues"
+        "url": "https://github.com/Rocio-Ch/taskManager/issues"
     },
-    "homepage": "https://github.com/Rocio-Ch/evaluacionTecnica#readme",
+    "homepage": "https://github.com/Rocio-Ch/taskManager#readme",
     "dependencies": {
         "cors": "^2.8.5",
         "dotenv": "^16.4.5",

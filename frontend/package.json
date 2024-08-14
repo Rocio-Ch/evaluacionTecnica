@@ -5,13 +5,13 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Rocio-Ch/evaluacionTecnica.git"
+    "url": "git+https://github.com/Rocio-Ch/taskManager.git"
   },
   "bugs": {
-    "url": "https://github.com/Rocio-Ch/evaluacionTecnica/issues"
+    "url": "https://github.com/Rocio-Ch/taskManager/issues"
   },
   "author": "Rocio Magali Chaparro",
-  "homepage": "https://github.com/Rocio-Ch/evaluacionTecnica#readme",
+  "homepage": "https://github.com/Rocio-Ch/taskManager#readme",
   "license": "ISC",
   "scripts": {
     "dev": "vite",
