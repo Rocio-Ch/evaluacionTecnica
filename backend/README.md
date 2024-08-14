@@ -4,7 +4,7 @@
 
 ##### La aplicacion "Task Manager" fue creada con Node, Express, MSSQL, Dotenv, Cors, Nodemon. En ella podremos crear tareas, editarlas, eliminarlas o restaurarlas desde la papelera de reciclaje. Al crear una tarea tendremos los campos titulo, una descripción, un estado y una fecha de vencimiento para poder identificarla.
 
-##### Repositorio: https://github.com/Rocio-Ch/evaluacionTecnica
+##### Repositorio: https://github.com/Rocio-Ch/taskManager
 
 <br>
 
