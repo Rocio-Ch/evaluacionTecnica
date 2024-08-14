@@ -14,7 +14,7 @@
                     ></v-btn>
                 </div>
                 <v-data-table
-                :items="history"
+                :items="props.history"
                 :headers="historyHeaders"
                 :sort-by="[{ key: 'status', order: 'asc' }]"
                 >
@@ -26,19 +26,7 @@
   
 <script setup>
 
-import { watch } from 'vue'
-import { useHistory } from "@/composables/useHistory"
-
-const props = defineProps(["dialog", "close", "id"])
-const { getHistory, history } = useHistory()
-
-watch(() => props.id, () => { 
-  if (props.id) {
-    getHistory(props.id)
-  } else {
-    history.value = null
-  }
-})
+const props = defineProps(["dialog", "close", "history"])
 
 const historyHeaders = [
     { align: "start", key: "status_name", title: "Status" },
