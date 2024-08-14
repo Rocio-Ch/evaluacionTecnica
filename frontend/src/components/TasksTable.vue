@@ -43,6 +43,14 @@
           :search="search"
           :sort-by="[{ key: 'title', order: 'asc' }]"
         >
+          <template v-slot:item.status_name="{ item }">
+            <div class="chips-status">
+              <v-chip :color="colorStatus[item.status_name]" dark>
+                {{ item.status_name }}
+              </v-chip>
+            </div>
+          </template>
+
           <template v-slot:item.actions="{ item }">
             <v-icon class="me-2" size="large" @click="openEditTaskDialog(item.id)">mdi-pencil</v-icon>
             <v-icon class="me-2" size="large" @click="openDeleteTaskDialog(item.id)">mdi-delete</v-icon>
@@ -51,7 +59,7 @@
         </v-data-table>
         <CreateTaskDialog :dialog="dialogCreateTask" :close="() => (dialogCreateTask = false)" @addNewTask="addTask" />
         <CreateTaskDialog :dialog="dialogEditTask" :id="idTask" :close="() => {idTask = null; dialogEditTask = false}" @editTask="modifyTask"  />
-        <HistoryTaskDialog :dialog="dialogHistory" :id="idHistory" :close="() => (dialogHistory = false)" />
+        <HistoryTaskDialog :dialog="dialogHistory" :history="history" :close="() => (dialogHistory = false)" />
         <DeleteTaskDialog :dialog="dialogDeleteTask" :id="idTask" :close="() => (dialogDeleteTask = false)" @deleteConfirm="removeTask(idTask)" />
     </div>
 </template>
@@ -70,9 +78,14 @@ const dialogCreateTask = ref(false)
 const dialogHistory = ref(false)
 const dialogDeleteTask = ref(false)
 const dialogEditTask = ref(false)
+const colorStatus = {
+  'Pending': 'primary',
+  'In progress': 'warning',
+  'Completed': '#02b602'
+};
 
 const { tasks, getTasks, removeTask, addTask, modifyTask, idTask } = useTasks()
-const { idHistory } = useHistory()
+const { getHistory, history  } = useHistory()
 
 
 onMounted(() => {
@@ -93,7 +106,7 @@ const openCreateTaskDialog = () => {
 
 const openHistoryDialog = (id) => {
     dialogHistory.value = true
-    idHistory.value = id
+    getHistory(id)
 }
 
 const openDeleteTaskDialog = (id) => {
@@ -136,6 +149,8 @@ thead {
     margin-bottom: 0px !important;
 }
 
+.chips-status * {
+    font-weight: 500;
+}
+
 </style>
-  
-  
