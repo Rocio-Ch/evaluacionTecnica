@@ -1,16 +1,21 @@
-# ***Task Manager: Back-End, Base de datos y Front-end***
+# ***Task Manager: Back-End, Base de datos***
 
-#### Realice este test de conocimientos con el fin de evaluar la capacidad de desarrollar una aplicación completa, tanto en diseño como en código utilizando Vue 3 en el front-end, Node.js en el back-end y SQL Server como base de datos.
+#### Con "Task Manager" podremos crear tareas, editarlas, eliminarlas o restaurarlas desde la papelera de reciclaje. Al crear una tarea tendremos los campos titulo, una descripción, un estado y una fecha de vencimiento para poder identificarla. Al editar tendremos la opción de agregar un comentario, en caso de ser necesario, para especificar por que motivo estamos editando dicha tarea.
 
-##### La aplicacion "Task Manager" fue creada con Node, Express, MSSQL, Dotenv, Cors, Nodemon. En ella podremos crear tareas, editarlas, eliminarlas o restaurarlas desde la papelera de reciclaje. Al crear una tarea tendremos los campos titulo, una descripción, un estado y una fecha de vencimiento para poder identificarla.
-
-##### Repositorio: https://github.com/Rocio-Ch/taskManager
+#### BACKEND:
+- Node Js
+- Express
+- SQL Server
+- MSSQL
+- Cors
+- Dotenv
+- Nodemon
 
 <br>
 
-##### Como iniciar la app:
+## Como iniciar la app:
 
-1. Descargar el proyecto
+1. Descargar el proyecto: https://github.com/Rocio-Ch/taskManager
 2. Abrir SQL Management Studio y crear una base de datos
 3. Una vez creada la base de datos, haga click derecho sobre el nombre de su base de datos y seleccione: 'New Query'
 4. En ella pega estas querys, selecciona todo el contenido y presiona "Execute" para ejecutarlas: 
