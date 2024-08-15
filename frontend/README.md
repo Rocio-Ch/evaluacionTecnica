@@ -1,13 +1,10 @@
 # ***Task Manager***
 
-#### BACKEND:
-- Node Js
-- Express
-- SQL Server
-- MSSQL
-- Cors
-- Dotenv
-- Nodemon
+#### FRONTEND:
+- Vue 3
+- Vuetify
+- Vue Router
+- Axios
 
 ##### En ella podremos crear tareas, editarlas, eliminarlas o restaurarlas desde la papelera de reciclaje. Al crear una tarea tendremos los campos titulo, una descripción, un estado y una fecha de vencimiento para poder identificarla.
 
