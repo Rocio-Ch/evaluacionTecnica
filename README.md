@@ -17,7 +17,7 @@ Frontend:
 - Axios 
 
 
-##### Con "Task Manager" podremos crear tareas, editarlas, eliminarlas o restaurarlas desde la papelera de reciclaje. Al crear una tarea tendremos los campos titulo, una descripción, un estado y una fecha de vencimiento para poder identificarla.
+Con "Task Manager" podremos crear tareas, editarlas, eliminarlas o restaurarlas desde la papelera de reciclaje. Al crear una tarea tendremos los campos titulo, una descripción, un estado y una fecha de vencimiento para poder identificarla. Al editar tendremos la opción de agregar un comentario, en caso de ser necesario, para especificar por que motivo estamos editando dicha tarea.
 
 ##### Las carpetas backend y frontend contienen los README.md correspondientes para utilizar la aplicación correctamente. 
 
